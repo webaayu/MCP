@@ -75,10 +75,6 @@ async def summarize_culture_survey() -> str:
     except Exception as e:
         return f"Error reading survey file: {e}"
 
-
-
-#if __name__ == "__main__":
-    #mcp.run(transport="stdio")
 if __name__ == "__main__":
     mcp.run(transport="sse")
 
