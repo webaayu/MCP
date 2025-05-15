@@ -1,7 +1,4 @@
-from pathlib import Path
 
-# Define the explanation content as markdown
-md_content = """
 # 🧠 Understanding the Workflow: MCP + OpenAI + Gradio Chatbot
 
 This application integrates a local tool server (via MCP), OpenAI function calling (GPT-4o), and a Gradio UI. Below is a complete breakdown of how the system works.
