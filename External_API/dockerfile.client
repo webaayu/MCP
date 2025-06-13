@@ -1,0 +1,16 @@
+# Dockerfile.client
+FROM python:3.10-slim
+
+ENV PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the client code
+COPY app.py ./app.py
+
+# Expose Gradio port
+EXPOSE 7860
+
+ENTRYPOINT ["python", "app.py"]
