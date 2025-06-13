@@ -1,0 +1,18 @@
+# Dockerfile.server
+FROM python:3.10-slim
+
+# Ensure UTF-8 unbuffered output
+ENV PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the server code
+COPY external_api/mcp_news_weather.py ./mcp_news_weather.py
+
+# Expose the server port
+EXPOSE 8000
+
+# Run the MCP server
+ENTRYPOINT ["fastmcp", "run", "mcp_news_weather.py:mcp", "--transport", "sse"]
