@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mcp_server:
     build: .
-    command: fastmcp run mcp_news_weather:mcp --transport sse
+    command: fastmcp run mcp_news_weather.py:mcp --transport sse
     environment:
       - PYTHONIOENCODING=utf-8
       - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
