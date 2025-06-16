@@ -2,19 +2,19 @@ version: "3.8"
 
 services:
   mcp_server:
-    build: .
-    command: fastmcp run mcp_news_weather.py:mcp --transport sse
+    build:
+      context: .
+      dockerfile: Dockerfile.server
     environment:
-      - PYTHONIOENCODING=utf-8
       - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
       - NEWS_API_KEY=${NEWS_API_KEY}
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
 
   gradio_client:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.client
     depends_on:
       - mcp_server
     environment:
@@ -22,6 +22,3 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     ports:
       - "7860:7860"
-    command: python app.py
-    volumes:
-      - .:/app
